@@ -21,4 +21,5 @@ feature 'Entered Names' do
       expect(page).to have_content 'score is 100'
     end
   end
+
 end
