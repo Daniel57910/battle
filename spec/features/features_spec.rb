@@ -9,11 +9,18 @@ end
 
 feature 'Entered Names' do
   scenario 'users enter their name on form' do
-    score = 100
-    begin_game
-    sign_in
-    play
+    $score = 100
+    start_game
     expect(page).to have_content 'Welcome Daniel and Rob to Battle!'
-    expect(page).to have_content "Rob score is #{score}"
+    expect(page).to have_content "Rob score is #{$score}"
+  end
+end
+
+feature 'Attack the other player' do
+  scenario 'player one attacks player two' do
+      start_game
+      play_game
+      attack
+      expect(page).to have_content "Rob was successfully attacked"
   end
 end

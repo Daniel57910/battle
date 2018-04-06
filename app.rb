@@ -25,6 +25,11 @@ class Battle < Sinatra::Base
     erb :play
   end
 
+  get '/attack' do
+    @name1 = session[:player2]
+    "#{@name1} was successfully attacked"
+  end
+
   run! if app_file == $0
 
 end
