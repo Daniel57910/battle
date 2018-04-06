@@ -1,5 +1,9 @@
 require_relative 'web_helper'
 
+$player1 = Player.new("Rob")
+$player2 = Player.new("Tom")
+$score = 100
+
 feature 'Home Page' do
   scenario "home page displays welcome" do
     visit_homepage
@@ -9,7 +13,6 @@ end
 
 feature 'Entered Names' do
   scenario 'users enter their name on form' do
-    $score = 100
     start_game
     expect(page).to have_content 'Welcome Daniel and Rob to Battle!'
     expect(page).to have_content "Rob score is #{$score}"
@@ -21,6 +24,7 @@ feature 'Attack the other player' do
       start_game
       play_game
       attack
-      expect(page).to have_content "Rob was successfully attacked"
+      $score -=10
+      expect(page).to have_content "Rob was successfully attacked. Score is #{$score}"
   end
 end

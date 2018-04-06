@@ -3,7 +3,7 @@ require 'capybara'
 require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
-require './app'
+require 'app'
 
 SimpleCov.start
 

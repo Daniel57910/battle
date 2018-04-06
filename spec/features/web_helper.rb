@@ -16,14 +16,12 @@ def sign_in
   click_button('Submit')
 end
 
-end
-
 def attack
   click_link('Attack')
 end
 
 #helper method for starting game
 def start_game
-    begin_game
-    sign_in
+  begin_game
+  sign_in
 end

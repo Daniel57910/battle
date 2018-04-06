@@ -1,8 +1,12 @@
 require 'sinatra/base'
+require_relative 'player'
+require_relative 'game'
+
+$game = Game.new
 
 class Battle < Sinatra::Base 
   enable :sessions
-  
+
   get '/' do
     'Testing infrastructure working!'
   end
@@ -13,21 +17,18 @@ class Battle < Sinatra::Base
 
   post '/names' do
     p params
-    session[:player1] = params[:player1]
-    session[:player2] = params[:player2]
+    $game.player1.add_name(params[:player1])
+    $game.player2.add_name(params[:player2])
     redirect '/play'
   end
 
   get '/play' do
-    @name1 = session[:player1]
-    @name2 = session[:player2]
-    @player_2_score = 100
     erb :play
   end
 
   get '/attack' do
-    @name1 = session[:player2]
-    "#{@name1} was successfully attacked"
+    $game.attack
+    "#{$game.player2.name} was successfully attacked. Score is #{$game.player2.score}"
   end
 
   run! if app_file == $0
